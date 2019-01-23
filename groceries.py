@@ -31,16 +31,55 @@ products = [
     {"id":20, "name": "Pomegranate Cranberry & Aloe Vera Enrich Drink", "department": "beverages", "aisle": "juice nectars", "price": 4.25}
 ] # based on data from Instacart: https://www.instacart.com/datasets/grocery-shopping-2017
 
-#print(products)
+# print(products)
 
-print(type(products))
+# print(products)
 
-print(type(products[0]))
+# print(products[0])
 
-print(len(products))
+# print(products[0]["name"])
 
-print(products[0]["name"])
+# for p in products:
+#    print(p["name"])
 
+print("--------------")
+print("THERE ARE " + str(len(products)) + " PRODUCTS:")
+print("--------------")
+
+def product_name(any_product):
+    return any_product["name"]
+
+products = sorted(products, key=product_name)
 
 for p in products:
-    print(p["name"])
+    price = p["price"]
+    print("+ " + p["name"]+ " " + "($" + str(round(price,2))+")")
+
+#
+# PART 2 
+#
+
+D = []
+
+for p in products:
+    D.append(p["department"])
+
+print("--------------")
+print("THERE ARE " + str(len(set(D))) + " DEPARTMENTS:")
+print("--------------")
+
+unique_department = list(set(D))
+
+unique_department.sort()
+
+for d in unique_department:
+    matching_products = [p for p in products if p["department"] == d]
+    matching_products_count = len(matching_products)
+    if matching_products_count > 1: 
+        label = "products"
+    else:
+        label = "product"
+    print("+ " + d.title() + " " + "(" + str(matching_products_count) + " " + label + ")")
+    
+# TODO: write some Python code here to produce the desired output
+
